@@ -19,6 +19,7 @@ class Task2a
             try {
                 //open url connection to get information
                 URLConnection urlConnection = url.openConnection();
+                //cast URLConnection to JarURLConnection
                 JarURLConnection jarConnection = (JarURLConnection) urlConnection;
                 printDetails(jarConnection.getContentType(), jarConnection.getContentLength());
             }catch(IOException ex)

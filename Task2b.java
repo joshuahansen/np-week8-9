@@ -21,6 +21,7 @@ class Task2b
             try {
                 //open url connection to get information
                 URLConnection urlConnection = url.openConnection();
+                //cast URL connection to Jar URL connection. get Jar filen and get all entries
                 JarURLConnection jarConnection = (JarURLConnection) urlConnection;
                 JarFile jarFile = jarConnection.getJarFile();
                 Enumeration enm = jarFile.entries();
@@ -40,15 +41,18 @@ class Task2b
     /**
     * @param contentType : String; tpye of content at url
     * @param contentLength : int; length of content as an int
-    * Display results from URL connection
+    * @param enm : Eunmeration; enumertaion of all entries in jar file
+    * Display results from  Jar URL connection
     */
     private static void printDetails(String contentType, int contentLength, Enumeration enm)
     {
         System.out.println("Content Type: " + contentType);
         System.out.println("Content Length: " + contentLength);
         System.out.println("List of Jar entries (Names and sizes):");
+        //loop while enumeration has more elements
         while(enm.hasMoreElements())
         {   
+            //cast each element to JarEntry and call required method for name ans size
             JarEntry entry = (JarEntry) enm.nextElement();
             System.out.println("Name: " + entry.getName() + " Size: " + entry.getSize());
         }   
